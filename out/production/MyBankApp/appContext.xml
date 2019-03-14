@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="atmCard"
+          class="com.ps.springm1.model.ATMCard"
+    />
+    <bean id="creditCard"
+          class="com.ps.springm1.model.CreditCard"
+    />
+    <bean id="debitCard"
+          class="com.ps.springm1.model.DebitCard"
+    />
+
+    <bean id="loanAccount"
+          class="com.ps.springm1.model.LoanAccount"
+          init-method="onInit"
+          destroy-method="onDestroy"
+    >     <constructor-arg ref="creditCard" />
+    </bean><!-- Constructor DI -->
+
+    <bean id="savingAccount"
+          class="com.ps.springm1.model.SavingAccount"
+          autowire="byName"
+          init-method="onInit"
+          destroy-method="onDestroy"
+    >     <!-- Autowiring DI -->
+    </bean><!-- Used to be a Settter-Getter/Property DI -->
+
+    <bean id="checkingAccount"
+          class="com.ps.springm1.model.CheckingAccount"
+          autowire="byName"
+          init-method="onInit"
+          destroy-method="onDestroy"
+    >
+    </bean><!-- Autowiring DI -->
+</beans>
